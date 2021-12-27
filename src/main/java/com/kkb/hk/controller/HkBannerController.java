@@ -34,7 +34,7 @@ public class HkBannerController {
      * @author Allen
      * @date: 2021/12/16 15:48
      */
-    @RequestMapping(value = "/qryList", method = RequestMethod.GET)
+    @RequestMapping(value = "/qryList", method = RequestMethod.POST)
     public ResponseEntity<String> qryList(HkBannerRequest hkBannerRequest) {
         log.info("进入banner列表接口");
         log.info("开始");
@@ -63,7 +63,7 @@ public class HkBannerController {
      * @author xqy
      * @date: 2021/12/27 18:45
      */
-    @RequestMapping(value = "/saveBanner", method = RequestMethod.GET)
+    @RequestMapping(value = "/saveBanner", method = RequestMethod.POST)
     public ResponseEntity<String> saveBanner(HkBanner hkBanner){
         log.info("新增banner");
         int flag = hkBannerService.saveBanner(hkBanner);
@@ -80,7 +80,7 @@ public class HkBannerController {
      * @author xqy
      * @date: 2021/12/27 18:46
      */
-    @RequestMapping(value = "/updateBanner", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateBanner", method = RequestMethod.POST)
     public ResponseEntity<String> updateBanner(HkBanner hkBanner){
         log.info("修改banner");
         int flag = hkBannerService.updateBanner(hkBanner);
@@ -97,7 +97,7 @@ public class HkBannerController {
      * @author xqy
      * @date: 2021/12/27 18:46
      */
-    @RequestMapping(value = "/deleteBanner", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBanner", method = RequestMethod.POST)
     public ResponseEntity<String> deleteBanner(Integer bannerId){
         log.info("删除banner");
         int flag = hkBannerService.deleteBanner(bannerId);
