@@ -43,9 +43,9 @@ public class HkBannerServiceImpl implements HkBannerService {
     @Override
     public List<HkBannerResponse> qryList(HkBannerRequest hkBannerRequest) {
         //此处代码需要先从redis中获取，获取不到则取查数据库
-        String key = hkBannerRequest.getTitle() +hkBannerRequest.getPageSize() + hkBannerRequest.getPageNum();
-        if (key.equals("nullnullnull")){
-            key = "all";
+        String key ="all";
+        if (!StringUtils.isEmpty(hkBannerRequest.getTitle())){
+            key+=hkBannerRequest.getTitle();
         }
         System.err.println(key);
         String historyJsON = jedis.get(key);
@@ -54,6 +54,7 @@ public class HkBannerServiceImpl implements HkBannerService {
             //缓存中没有数据，查询数据库
             List<HkBannerResponse> list = hkBannerDao.qryList(hkBannerRequest);
             //此处代码需要把查出来的结果set redis缓存
+
             jedis.set(key,JSON.toJSONString(list));
             return list;
         }
