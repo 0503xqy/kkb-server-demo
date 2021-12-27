@@ -32,6 +32,12 @@ spring:
   profiles:
     #druid：测试环境  rel：预发环境  prod:生产环境
     active: druid
+  #redis配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 3000
+
 
 # 日志配置
 logging:

@@ -1,5 +1,6 @@
 package com.kkb.hk.controller;
 
+import com.kkb.hk.entity.HkBanner;
 import com.kkb.hk.service.HkBannerService;
 import com.kkb.hk.utils.ReqResultUtil;
 import com.kkb.hk.vo.request.banner.HkBannerRequest;
@@ -54,6 +55,57 @@ public class HkBannerController {
         return ReqResultUtil.genSuccessResultResponse(hkBannerService.qryListByPage(hkBannerRequest));
     }
 
+
+    /**
+     * @description:新增banner
+     * @param: [hkBanner]
+     * @return: org.springframework.http.ResponseEntity<java.lang.String>
+     * @author xqy
+     * @date: 2021/12/27 18:45
+     */
+    @RequestMapping(value = "/saveBanner", method = RequestMethod.GET)
+    public ResponseEntity<String> saveBanner(HkBanner hkBanner){
+        log.info("新增banner");
+        int flag = hkBannerService.saveBanner(hkBanner);
+        if(flag==1){
+            return ReqResultUtil.genSuccessResultResponse("添加成功");
+        }
+        return ReqResultUtil.genFailResultResponse("添加失败");
+    }
+
+    /**
+     * @description:修改banner
+     * @param: [hkBanner]
+     * @return: org.springframework.http.ResponseEntity<java.lang.String>
+     * @author xqy
+     * @date: 2021/12/27 18:46
+     */
+    @RequestMapping(value = "/updateBanner", method = RequestMethod.GET)
+    public ResponseEntity<String> updateBanner(HkBanner hkBanner){
+        log.info("修改banner");
+        int flag = hkBannerService.updateBanner(hkBanner);
+        if (flag==1){
+            return ReqResultUtil.genSuccessResultResponse("修改成功");
+        }
+        return ReqResultUtil.genFailResultResponse("修改失败");
+    }
+
+    /**
+     * @description:删除banner
+     * @param: [bannerId]
+     * @return: org.springframework.http.ResponseEntity<java.lang.String>
+     * @author xqy
+     * @date: 2021/12/27 18:46
+     */
+    @RequestMapping(value = "/deleteBanner", method = RequestMethod.GET)
+    public ResponseEntity<String> deleteBanner(Integer bannerId){
+        log.info("删除banner");
+        int flag = hkBannerService.deleteBanner(bannerId);
+        if (flag==1){
+            return ReqResultUtil.genSuccessResultResponse("删除成功");
+        }
+        return ReqResultUtil.genFailResultResponse("删除失败");
+    }
 
 }
 

@@ -15,4 +15,5 @@ public class HkBannerRequest extends PageRequest {
      * 标题
      */
     private String title;
+
 }

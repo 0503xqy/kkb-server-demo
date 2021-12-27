@@ -37,6 +37,49 @@
         </if>
         order by sort asc,banner_id desc
     </select>
+    <!--根据id查找-->
+    <select id="qryOneById" parameterType="int" resultType="HkBanner">
+        select
+        *
+        from hk_banner where banner_id=#{bannerId}
+    </select>
+
+    <!--新增banner-->
+    <insert id="saveBanner" parameterType="HkBanner">
+        INSERT into hk_banner(title,description,image,url,created_time) VALUES(#{title},#{description},#{image},#{url},#{createdTime})
+    </insert>
+
+    <!--更新banner-->
+    <update id="updateBanner" parameterType="HkBanner">
+        UPDATE hk_banner
+        <trim prefix="set" suffixOverrides=",">
+        <if test="title != null and title !=''">
+            title = #{title},
+        </if>
+        <if test="description != null and description !=''">
+            description = #{description},
+        </if>
+        <if test="image != null and image !=''">
+            image = #{image},
+        </if>
+        <if test="url != null and url !=''">
+            url = #{url},
+        </if>
+        <if test="updatedBy != null and updatedBy !=''">
+            updated_by = #{updatedBy},
+        </if>
+        <if test="updatedTime != null">
+            updated_time = #{updatedTime},
+        </if>
+        </trim>
+
+        WHERE banner_id = #{bannerId}
+    </update>
+
+    <!--删除banner-->
+    <delete id="deleteBanner" parameterType="Integer">
+        DELETE FROM hk_banner WHERE banner_id = #{bannerId}
+    </delete>
 
 </mapper>
 
